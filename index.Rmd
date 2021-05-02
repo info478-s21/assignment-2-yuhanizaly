@@ -1,0 +1,9 @@
+---
+title: "Risk Report"
+output: html_document
+---
+Write your report here using _markdown_. I **strongly suggest** you do your analysis in the `analysis.R` file, and the `source()` your results into this script to write your report. 
+
+```{r cars}
+# Example code block
+```
