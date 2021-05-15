@@ -1,9 +1,69 @@
 ---
+name: Yuhaniz Aly
 title: "Risk Report"
 output: html_document
 ---
-Write your report here using _markdown_. I **strongly suggest** you do your analysis in the `analysis.R` file, and the `source()` your results into this script to write your report. 
 
-```{r cars}
-# Example code block
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("analysis.R")
+library(knitr)
 ```
+
+# Tuberculosis (TB) Analysis
+
+This table shows the odds ratio for 13 different studies that assess the effectiveness of the Bacillus Calmette–Guérin vaccine in preventing Tuberculosis.
+
+## TB Odds Ratio 
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+kable(edit_tb_data, col.names = c("Study", "Odds Ratio"), align = "c")
+```
+
+
+## Relationship between TB odds ratio and year
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+or_year_plot_inter
+```
+
+## Relationship between TB odds ratio and latitude
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+or_latitude_plot_inter
+```
+
+The plot comparing TB odds ratio over the years shows a _positive_ correlation, but the correlation is weak. This means over time, the odds of developing TB for those that were vaccinated with BCG was _more_ likely than those who did not get vaccinated.
+
+The plot comparing TB odds ratio and latitude shows a _negative_ correlation, but the correlation is also weak. This means as latitude increases, the odds of developing TB for those that were vaccinated with BCG was _less_ likely than those who did not get vaccinated. 
+
+Based off this analysis, the effectiveness of the BCG vaccine does _not_ seem to be effective. The plots on the graphs are scattered and spread widely and are not closely compact. Even as the years progresses, we see that the odds ratio increases, implying that those who were vaccinated still got TB compared to those who did not get vaccinated. This is surprising because one may think that vaccines are a public health intervention to help prevent a disease from occuring. Yet, the data shows that the effectiveness of the BCG vaccine is poorly effective. Also, the latitude factor was interesting because it showed a weak correlation, which suggests that perhaps the location where people reside at may effect the effectiveness of the vaccine. Also, in both graphs, one point, study 12, looks like an outlier due to its high odds ratio when comparing with year and latitude. 
+
+## TB Odds Ratio VS Relative Risk
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+or_vs_rr_plot_inter
+```
+The graph shows a strong positive correlation between odds ratio and relative risk. This means that for each study, odds ratio and relative for the effectiveness of the BCG vaccine in preventing Tuberculosis is closely proportional. 
+
+***
+
+# Low Birth Rate Analysis 
+
+**Basic summary statistics:** <br>
+- Proportion of low birth weights: `r proportion_lbw` <br>
+- Proportion of smoker status: `r proportion_smokers` <br>
+- Mean birth weight: `r mean_bw`
+
+## Summary Table for Low Birth Weight and the Expsoure of Interest
+This data table shows the relative risk for low birth weight based on four factors: smoking status, attending 0 prenatal care visits, hypertension status, and giving birth before age 20. 
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+kable(edit_rr_table, col.names = c("Exposure", "Relative Risk"), align = "c")
+```
+
+
+According to the data table, those that were **smokers** were `r rr_smoke` times more likely to experience a baby with low birth weight than those who were non-smokers. Those that attended **0 prenatal care visits** were `r rr_zero_prenatal` times more likely to experience a baby with low birth weight than those who attended at least 1 prenatal care visits. Those that had **hypertension** were `r rr_ht` times more likely to experience a baby with low birth weight than those who did not have hypertension. Those that gave **birth before the age of 20** were `r rr_under20` times less likely to experience a baby with low birth weight than those who gave birth at aged 20 and older. Additionally, hypertension status was the factor with the largest relative risk, which suggests that having hypertension could make people more at risk to have an under weight baby. With that, giving birth before 20 years old is the least at risk factor for having an under weight baby. This is quite surprising to me because I would have thought someone in their late 20's or early 30's would have more nutrients to give to their fetus than someone younger than 20. 
+
+***
+
+# Endometrial Cancer Analysis
+The epitab function calculated the odds ratio of having Endometrial cancer based on factors, such as, presence of Gall bladder disease, hypertension status, and obesity. 
+
+According to the function, the the odds of developing Endometrial cancer for those with **gall bladder disease** was `r gall_or` times higher than those who did not have gall bladder disease. The odds of developing Endometrial cancer for those with **hypertension** was `r hyp_or` times higher than those who did not have hypertension. The odds of developing Endometrial cancer for those who are **obese** was `r ob_or` times higher than those who are not obese. This means any one of these three factors puts one at a higher chance of developing Endometrial cancer. Also, living with gall bladder disease puts someone at a higher chance of developing Endometrial cancer than those living with hypertension nor obesity. In fact, those with hypertension had the least chance of developing Endometrial cancer. 
+
